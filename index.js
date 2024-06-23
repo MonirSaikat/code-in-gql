@@ -51,6 +51,14 @@ const resolvers = {
     author(parent, args) {
       return authors.find(a => a.id == parent.author_id);
     }
+  },
+
+  Mutation: {
+    deleteGame(parent, args) {
+      const index = games.findIndex(g => g.id == args.id);
+      games.splice(index, 1);
+      return games;
+    }
   }
 };
 
