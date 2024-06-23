@@ -16,6 +16,18 @@ const resolvers = {
 
     reviews() {
       return reviews;
+    },
+
+    review(parent, args) {
+      return reviews.find(r => r.id == args.id);
+    },
+
+    game(parent, args) {
+      return games.find(g => g.id == args.id);
+    },
+
+    author(parent, args) {
+      return authors.find(a => a.id == args.id);
     }
   }
 };
