@@ -58,6 +58,28 @@ const resolvers = {
       const index = games.findIndex(g => g.id == args.id);
       games.splice(index, 1);
       return games;
+    },
+
+    addGame(parent, args) {
+      const newGame = {
+        ...args.game,
+        id: games.length + 1
+      };
+
+      games.push(newGame);
+
+      return newGame;
+    },
+
+    updateGame(parent, args) {
+      const game = games.find(g => g.id == args.id);
+
+      if(!game) return null;
+      
+      game.title = args.edits.title;
+      game.platform = args.edits.platform;
+      
+      return game;
     }
   }
 };
