@@ -1,29 +1,30 @@
 import { authors, games, reviews } from "./_db.js";
+import { db } from './db.js';
 
 export const resolvers = {
   Query: {
-    games() {
-      return games;
+    async games() {
+      return await db('games').select('*');
+    },
+    
+    async authors() {
+      return await db('authors').select('*');
+    },
+    
+    async reviews() {
+      return await db('reviews').select('*');
     },
 
-    authors() {
-      return authors;
+    async review(parent, args) {
+      return await db('reviews').where('id', args.id).first();
     },
 
-    reviews() {
-      return reviews;
+    async game(parent, args) {
+      return await db('games').where('id', args.id).first();
     },
-
-    review(parent, args) {
-      return reviews.find(r => r.id == args.id);
-    },
-
-    game(parent, args) {
-      return games.find(g => g.id == args.id);
-    },
-
-    author(parent, args) {
-      return authors.find(a => a.id == args.id);
+    
+    async author(parent, args) {
+      return await db('authors').where('id', args.id).first();
     }
   },
 
