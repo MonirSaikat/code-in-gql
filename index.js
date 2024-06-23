@@ -16,4 +16,4 @@ const { url } = await startStandaloneServer(server, {
   }
 });
 
-console.log('server is listening on port ', PORT);
+console.log('Your server running here 🚀 ', url);
