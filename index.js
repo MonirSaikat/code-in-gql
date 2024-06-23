@@ -29,6 +29,28 @@ const resolvers = {
     author(parent, args) {
       return authors.find(a => a.id == args.id);
     }
+  },
+
+  Game: {
+    reviews(parent) {
+      return reviews.filter(r => r.game_id == parent.id);
+    }
+  },
+  
+  Author: {
+    reviews(parent) {
+      return reviews.filter(r => r.author_id == parent.id);
+    }
+  },
+
+  Review: {
+    game(parent, args) {
+      return games.find(g => g.id == parent.game_id);
+    },
+
+    author(parent, args) {
+      return authors.find(a => a.id == parent.author_id);
+    }
   }
 };
 
